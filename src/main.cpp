@@ -2,9 +2,9 @@
 #include <AccelStepper.h>
 
 // Pin Assignments
-const uint STEP_PIN = 18;
-const uint8_t DIR_PIN = 19;
-const uint8_t ENA_PIN = 21;
+const uint8_t STEP_PIN = 27;
+const uint8_t DIR_PIN = 14;
+//const uint8_t ENA_PIN = 21;
 
 // Params
 const float ACCELERATION = 32000.0;
@@ -22,8 +22,8 @@ void processCommand(const String &cmd);
 void setup() {
   Serial.begin(115200);
 
-  pinMode(ENA_PIN, OUTPUT);
-  digitalWrite(ENA_PIN, LOW); // LOW = enabled on DM542T
+  //pinMode(ENA_PIN, OUTPUT);     // Always on, so floating
+  //digitalWrite(ENA_PIN, LOW);
 
   stepper.setMaxSpeed(500000.0);
   stepper.setAcceleration(ACCELERATION);

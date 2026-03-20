@@ -5,7 +5,7 @@ import sys
 # ── Hardware geometry — EDIT THESE TO MATCH YOUR SETUP ───────────────────────
 
 STEPS_PER_REV = 200     # 1.8° motor = 200 full steps per revolution
-MICROSTEPS    = 8       # Must match DM542T DIP switch setting
+MICROSTEPS    = 16       # Must match DM542T DIP switch setting
 LEAD_PITCH_MM = 8.0     # mm of travel per motor revolution
 
 # Derived — don't edit:
@@ -79,7 +79,8 @@ def show_help() -> None:
     print("""
   Commands:
     <mm>           Move ±mm in X   examples:  10    -5.5    +0.1
-    s <speed>      Set speed (mm/s)            s 20    s 2.5
+    set_speed       Set speed (mm/s)            s 20    s 2.5
+    speed          Show current speed
     stop           Decelerate to a halt
     zero           Set current position as origin
     status         Query ESP32 state
@@ -111,7 +112,7 @@ def main() -> None:
     try:
         while True:
             try:
-                raw = input("stage > ").strip()
+                raw = input("Input: ").strip()
             except EOFError:
                 break
 
@@ -138,7 +139,10 @@ def main() -> None:
             elif lo == "status":
                 print(f"  {send(ser, 'STATUS')}")
 
-            elif lo.startswith(("s ", "speed ")):
+            elif lo == "speed":
+                print(f"Current Speed: {speed} mm/s")
+
+            elif lo.startswith(("set_speed ")):
                 parts = raw.split(maxsplit=1)
                 try:
                     new_speed = float(parts[1])
