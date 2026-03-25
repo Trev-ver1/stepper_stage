@@ -5,7 +5,7 @@ import sys
 # ── Hardware geometry — EDIT THESE TO MATCH YOUR SETUP ───────────────────────
 
 STEPS_PER_REV = 200     # 1.8° motor = 200 full steps per revolution
-MICROSTEPS    = 16       # Must match DM542T DIP switch setting
+MICROSTEPS    = 32       # Must match DM542T DIP switch setting
 LEAD_PITCH_MM = 8.0     # mm of travel per motor revolution
 
 # Derived — don't edit:
