@@ -25,7 +25,7 @@
 - Run: source .venv/bin/activate → python3 stage_control.py /dev/ttyUSB0
 
 ## Commands
-- <mm>:             Move ±mm
+- # <mm>:             Move ±mm
 - set_speed <val>:  Set speed (mm/s)
 - speed:            Show current speed
 - stop:             Emergency stop
